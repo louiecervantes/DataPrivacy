@@ -25,7 +25,7 @@ def app():
     st.write(desc)
     
     if st.button('Begin'):
-        st.write("We select the relevant attributes for describing our samples."
+        st.write("We select the relevant attributes for describing our samples.")
         df1 = df.loc[:, ['Age', 'Position']]
         st.write(df1.head())
 
