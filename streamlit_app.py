@@ -25,9 +25,9 @@ def app():
     st.write(desc)
     
     if st.button('Begin'):
-        st.write("We select the relevant attributes for describing our samples.")
+        st.write("We select the relevant attributes for describing our samples. The first 10 rows are shown below.")
         df1 = df.loc[:, ['Age', 'Position']]
-        st.write(df1.head())
+        st.write(df1.head(10))
 
 
 # Run the app
