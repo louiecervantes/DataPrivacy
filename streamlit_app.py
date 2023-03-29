@@ -33,8 +33,8 @@ def app():
         
     if st.button('Visualize'):
         p = sns.countplot(x="Age", data = df1, palette="bright")
-        _ = plt.setp(p.get_xticklabels(), rotation=90)
-        st.pyplot(p)
+        fig = plt.setp(p.get_xticklabels(), rotation=90)
+        st.pyplot(fig)
 
 
 # Run the app
