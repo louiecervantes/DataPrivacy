@@ -17,7 +17,7 @@ def app():
     st.title("Awareness and Utilization of Data Privacy in Social Media")
     st.write("Sequential explanatory mixed method research design was used in this study. It started with collecting and analyzing quantitative data using a validated and reliability-tested two sets of researcher-made instrument that was used to determine the school personnel’s level of awareness on data privacy and their degree of personal information shared on social media.")
 
-    # Load the mobile phone dataset
+    st.subheader("The Dataset")
     df = pd.read_csv('data_privacy.csv', dtype='str', header=0, 
         sep = ",", encoding='latin')
     st.dataframe(df, width=800, height=400)
