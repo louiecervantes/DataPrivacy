@@ -45,7 +45,7 @@ def app():
     if st.button('Analyze'):
         socmedia = df.iloc[:,2:21].astype(int).mean(axis=1)
         df1['socmedia'] = socmedia
-        sr.write("The social media mean ratings")
+        st.write("The social media mean ratings")
         st.write(df1)
 
 # Run the app
