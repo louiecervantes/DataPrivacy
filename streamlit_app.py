@@ -32,8 +32,9 @@ def app():
         st.write(df1.nunique())
         
     if st.button('Visualize'):
+        fig = plt.figure(figsize=(9,9))
         p = sns.countplot(x="Age", data = df1, palette="bright")
-        fig = plt.setp(p.get_xticklabels(), rotation=90)
+        _ = plt.setp(p.get_xticklabels(), rotation=90) 
         st.pyplot(fig)
 
 
