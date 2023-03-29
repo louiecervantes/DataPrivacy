@@ -1,4 +1,4 @@
-#Write a simple app that reads the user input and display the output
+#Input the relevant libraries
 import numpy as np
 import pandas as pd
 import streamlit as st
@@ -25,8 +25,9 @@ def app():
     st.write(desc)
     
     if st.button('Begin'):
-        df_info = df.info()
-        st.write(df_info)
+        st.write("We select the relevant attributes for describing our samples."
+        df1 = df.loc[:, ['Age', 'Position']]
+        st.write(df1.head())
 
 
 # Run the app
