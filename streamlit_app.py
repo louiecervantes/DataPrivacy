@@ -37,7 +37,11 @@ def app():
         p = sns.countplot(x="Age", data = df1, palette="bright")
         _ = plt.setp(p.get_xticklabels(), rotation=90) 
         st.pyplot(fig)
-
+        st.write("The samples as grouped by Position")
+        fig = plt.figure(figsize=(5,2))
+        p = sns.countplot(x="Position", data = df1, palette="muted")
+        _ = plt.setp(p.get_xticklabels(), rotation=90) 
+        st.pyplot(fig)
 
 # Run the app
 if __name__ == "__main__":
