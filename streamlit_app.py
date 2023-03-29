@@ -24,10 +24,9 @@ def app():
     st.write("Properties of the dataset")
     desc = df.describe().T
     st.write(desc)
-    
+    df1 = df.loc[:, ['Age', 'Position']]
     if st.button('Begin'):
         st.write("We select the relevant attributes for describing our samples. The first 10 rows are shown below.")
-        df1 = df.loc[:, ['Age', 'Position']]
         st.write(df1.head(10))
         st.write("The unique records in the selected attributes")
         st.write(df1.nunique())
