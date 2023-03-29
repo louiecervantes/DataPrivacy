@@ -24,7 +24,7 @@ def app():
     desc = df.describe().T
     
     if st.button('Begin'):
-        st.write("df.info()")
+        st.write(df.info())
 
 
 # Run the app
