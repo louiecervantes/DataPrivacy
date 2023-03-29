@@ -42,6 +42,10 @@ def app():
         p = sns.countplot(x="Position", data = df1, palette="muted")
         _ = plt.setp(p.get_xticklabels(), rotation=90) 
         st.pyplot(fig)
+     if st.button('Analyze'):
+        socmedia = df.iloc[:,2:21].astype(int).mean(axis=1)
+        df1['socmedia'] = socmedia
+        st.write(df1.info())
 
 # Run the app
 if __name__ == "__main__":
