@@ -29,6 +29,8 @@ def app():
         st.write("We select the relevant attributes for describing our samples. The first 10 rows are shown below.")
         df1 = df.loc[:, ['Age', 'Position']]
         st.write(df1.head(10))
+        st.write("The unique records")
+        st.write(df1.nunique())
 
 
 # Run the app
