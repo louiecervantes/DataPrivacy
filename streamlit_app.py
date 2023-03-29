@@ -31,7 +31,8 @@ def app():
         st.write(df1.head(10))
         st.write("The unique records in the selected attributes")
         st.write(df1.nunique())
-     if st.button('Visualize'):
+        
+    if st.button('Visualize'):
         p = sns.countplot(x="Age", data = df1, palette="bright")
         _ = plt.setp(p.get_xticklabels(), rotation=90)
         st.pyplot(p)
