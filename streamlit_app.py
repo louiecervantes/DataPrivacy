@@ -21,6 +21,7 @@ def app():
     df = pd.read_csv('data_privacy.csv', dtype='str', header=0, 
         sep = ",", encoding='latin')
     st.dataframe(df, width=800, height=400)
+    st.write("Properties of the dataset")
     desc = df.describe().T
     st.write(desc)
     
