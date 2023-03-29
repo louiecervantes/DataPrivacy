@@ -33,7 +33,7 @@ def app():
         
     if st.button('Visualize'):
         st.write("The samples as grouped by Age")
-        fig = plt.figure(figsize=(6,4))
+        fig = plt.figure(figsize=(5,2))
         p = sns.countplot(x="Age", data = df1, palette="bright")
         _ = plt.setp(p.get_xticklabels(), rotation=90) 
         st.pyplot(fig)
