@@ -22,9 +22,11 @@ def app():
         sep = ",", encoding='latin')
     st.dataframe(df, width=800, height=400)
     desc = df.describe().T
+    st.write(desc)
     
     if st.button('Begin'):
-        st.write(df.info())
+        df_info = df.info()
+        st.write(df_info)
 
 
 # Run the app
