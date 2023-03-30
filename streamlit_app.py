@@ -105,7 +105,7 @@ def app():
         
         df1 = pd.DataFrame(X)
         df1.columns = ['Age',	'Position',	'socmedia',	'dpa_awareness']
-        fig=plt.figure(figsize=(6,3))
+        fig=plt.figure(figsize=(4,2))
         st.write("Social media mean rating (raw)")
         p = sns.countplot(x="socmedia", data = df1, palette="muted")
         _ = plt.setp(p.get_xticklabels(), rotation=90)
@@ -119,7 +119,7 @@ def app():
         
         df1['socmedialevel'] = df1.apply(lambda x : GetSocmediaLevel(x['socmedia']), axis=1)
         st.write(df1.socmedialevel.value_counts())
-        fig=plt.figure(figsize=(6,3))        
+        fig=plt.figure(figsize=(4,2))        
         sns.countplot(x="socmedialevel", data = df1, order=['high','moderate','low'],  palette="muted")
         plt.title('Social Media Levels')
         st.pyplot(fig) 
@@ -132,26 +132,26 @@ def app():
         st.write(df1.AgeRange.value_counts())
         
         st.write("Levels of DPA Awareness Across Age Groups")
-        fig=plt.figure(figsize=(6,3))
+        fig=plt.figure(figsize=(4,2))
         p = sns.countplot(x='AgeRange', data = df1, hue='socmedialevel', palette='bright')
         _ = plt.setp(p.get_xticklabels(), rotation=90)
         st.pyplot(fig)
         
         st.write("Levels of Social Media Use Across Positions")
-        fig=plt.figure(figsize=(6,3))
+        fig=plt.figure(figsize=(4,2))
         df1['Position'] = label_encoder[0].inverse_transform(df1['Position'].astype(int))
         p = sns.countplot(x='Position', data = df1, hue='socmedialevel', palette='bright')
         _ = plt.setp(p.get_xticklabels(), rotation=90)
         st.pyplot(fig)
         
         st.write("Levels of DPA Awareness Across Age Groups")
-        fig=plt.figure(figsize=(6,3))        
+        fig=plt.figure(figsize=(4,2))        
         p = sns.countplot(x='AgeRange', data = df1, hue='DPAawarenesslevel', palette='bright')
         _ = plt.setp(p.get_xticklabels(), rotation=90) 
         st.pyplot(fig)
  
         st.write("Levels of DPA Awareness Across Position")
-        fig=plt.figure(figsize=(6,3))    
+        fig=plt.figure(figsize=(4,2))    
         p = sns.countplot(x='Position', data = df1, hue='DPAawarenesslevel', palette='bright')
         _ = plt.setp(p.get_xticklabels(), rotation=90)
         st.pyplot(fig)
