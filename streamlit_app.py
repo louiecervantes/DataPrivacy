@@ -47,6 +47,10 @@ def app():
         df1['socmedia'] = socmedia
         st.write("The social media mean ratings")
         st.write(df1)
+        dpa_awareness = df.iloc[:,22:41].astype(int).mean(axis=1)
+        df1['dpa_awareness'] = dpa_awareness
+        st.write("The Data Privacy Awareness mean ratings")
+        st.write(df1)
 
 # Run the app
 if __name__ == "__main__":
