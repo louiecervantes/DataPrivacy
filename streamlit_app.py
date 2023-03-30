@@ -9,6 +9,12 @@ from sklearn.preprocessing import LabelEncoder
 from scipy.stats import chi2_contingency
 import scipy.stats as stats
 
+#This function is used to encode the labels into numeric data
+def encode_label(input_label, test_label):
+  label_encoder.append(LabelEncoder())
+  label_encoder[-1].fit(input_label)
+  return label_encoder[-1].transform(test_label)
+
 # Define the Streamlit app
 def app():
     st.header("Welcome to Data Privacy Awareness Study")
@@ -52,6 +58,24 @@ def app():
         st.write("The Data Privacy Awareness mean ratings")
         st.write(df1)
 
+        # Convert string data to numerical data
+        X = np.array(df1)
+        #initialize the variables
+        label_encoder = []
+        X_encoded = np.empty(X.shape)
+
+        position_labels = ['Faculty', 'Unit/Subject Area Head', 'Non-teaching Staff', 'A-Team']
+
+        X_encoded[:, 0] =  X[:, 0]
+        X_encoded[:, 1] = encode_label(position_labels, X[:, 1])
+        #these data already numeric so we just copy
+        X_encoded[:, 2] =  X[:, 2]
+        X_encoded[:, 3] =  X[:, 3]
+
+        X = np.array(X_encoded)
+        #print the data to verify encoding was successful
+        st.write('Sample of the encoded data')
+        st.write(X[0:5])
 # Run the app
 if __name__ == "__main__":
     app()
