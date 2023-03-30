@@ -110,8 +110,9 @@ def app():
         p = sns.countplot(x="socmedia", data = df1, palette="muted")
         _ = plt.setp(p.get_xticklabels(), rotation=90)
         st.pyplot(fig)
+       
+        st.write("DPA Awareness mean rating (raw)")
         fig=plt.figure(figsize=(6,3))
-        st.write("DPA Awareness mean rating (raw)")        
         p = sns.countplot(x="dpa_awareness", data = df1, palette="muted")
         _ = plt.setp(p.get_xticklabels(), rotation=90) 
         st.pyplot(fig)
@@ -123,11 +124,18 @@ def app():
         plt.title('Social Media Levels')
         st.pyplot(fig) 
         
+        st.write("DPA Awareness Levels")
         df1['DPAawarenesslevel'] = df1.apply(lambda x : GetDPA_awarenessLevel(x['dpa_awareness']), axis=1)
         st.write(df1.DPAawarenesslevel.value_counts())
-        
+        st.write("Age groups")
         df1['AgeRange'] = df1.apply(lambda x : GetAgeRange(x['Age']), axis=1)
         st.write(df1.AgeRange.value_counts())
+        
+        st.write("Levels of DPA Awareness Across Age Groups")
+        fig=plt.figure(figsize=(6,3))
+        p = sns.countplot(x='AgeRange', data = df1, hue='socmedialevel', palette='bright')
+        _ = plt.setp(p.get_xticklabels(), rotation=90)
+        st.pyplot(fig)
         
 # Run the app
 if __name__ == "__main__":
