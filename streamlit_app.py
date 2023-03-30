@@ -10,6 +10,7 @@ from scipy.stats import chi2_contingency
 import scipy.stats as stats
 
 #This function is used to encode the labels into numeric data
+label_encoder = []
 def encode_label(input_label, test_label):
   label_encoder.append(LabelEncoder())
   label_encoder[-1].fit(input_label)
@@ -48,6 +49,7 @@ def app():
         p = sns.countplot(x="Position", data = df1, palette="muted")
         _ = plt.setp(p.get_xticklabels(), rotation=90) 
         st.pyplot(fig)
+        
     if st.button('Analyze'):
         socmedia = df.iloc[:,2:21].astype(int).mean(axis=1)
         df1['socmedia'] = socmedia
@@ -61,7 +63,6 @@ def app():
         # Convert string data to numerical data
         X = np.array(df1)
         #initialize the variables
-        label_encoder = []
         X_encoded = np.empty(X.shape)
 
         position_labels = ['Faculty', 'Unit/Subject Area Head', 'Non-teaching Staff', 'A-Team']
@@ -73,9 +74,11 @@ def app():
         X_encoded[:, 3] =  X[:, 3]
 
         X = np.array(X_encoded)
+        
         #print the data to verify encoding was successful
         st.write('Sample of the encoded data')
         st.write(X[0:5])
+        
 # Run the app
 if __name__ == "__main__":
     app()
