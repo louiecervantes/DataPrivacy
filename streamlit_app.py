@@ -166,10 +166,10 @@ def app():
         chi2_stat, p_value, dof, expected = chi2_contingency(cont_table)
 
         # print the results
-        st.write("Chi-square statistic: " + chi2_stat)
-        st.write("p-value: " + p_value)
-        st.write("Degrees of freedom: " + dof)
-        st.write("Expected frequencies: \n" + expected)
+        st.write("Chi-square statistic: " + str(chi2_stat))
+        st.write("p-value: " + str(p_value))
+        st.write("Degrees of freedom: " + str(dof))
+        st.write("Expected frequencies: \n" + str(expected))
 
 # Run the app
 if __name__ == "__main__":
