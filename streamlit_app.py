@@ -79,6 +79,14 @@ def app():
         st.write('Sample of the encoded data')
         st.write(X[0:5])
         
+        df1 = pd.DataFrame(X)
+        df1.columns = ['Age',	'Position',	'socmedia',	'dpa_awareness']
+        fig=plt.figure(figsize=(6,3))
+        st.write("Social media mean rating (raw)")
+        p = sns.countplot(x="socmedia", data = df1, palette="muted")
+        _ = plt.setp(p.get_xticklabels(), rotation=90)
+        st.pyplot(fig)
+        
 # Run the app
 if __name__ == "__main__":
     app()
