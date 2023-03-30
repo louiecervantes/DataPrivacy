@@ -23,6 +23,22 @@ def GetSocmediaLevel(socmedia):
         return 'moderate'
     else: 
         return 'low'
+      
+def GetDPA_awarenessLevel(dpa_awareness):   
+    if ( dpa_awareness > 4.70 ):
+        return 'high'
+    if ( dpa_awareness > 4.0):
+        return 'moderate'
+    else: 
+        return 'low'
+      
+def GetAgeRange(Age):   
+    if ( Age > 65 ):
+        return 'senior'
+    if ( Age > 40 ):
+        return 'middle'
+    else: 
+        return 'young'
 
 # Define the Streamlit app
 def app():
@@ -105,7 +121,13 @@ def app():
         fig=plt.figure(figsize=(6,3))        
         sns.countplot(x="socmedialevel", data = df1, order=['high','moderate','low'],  palette="muted")
         plt.title('Social Media Levels')
-        st.pyplot(fig)  
+        st.pyplot(fig) 
+        
+        df1['DPAawarenesslevel'] = df1.apply(lambda x : GetDPA_awarenessLevel(x['dpa_awareness']), axis=1)
+        st.write(df1.DPAawarenesslevel.value_counts())
+        
+        df1['AgeRange'] = df1.apply(lambda x : GetAgeRange(x['Age']), axis=1)
+        st.write(df1.AgeRange.value_counts())
         
 # Run the app
 if __name__ == "__main__":
