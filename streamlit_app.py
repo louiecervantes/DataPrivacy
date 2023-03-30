@@ -137,6 +137,40 @@ def app():
         _ = plt.setp(p.get_xticklabels(), rotation=90)
         st.pyplot(fig)
         
+        st.write("Levels of Social Media Use Across Positions")
+        fig=plt.figure(figsize=(6,3))
+        df1['Position'] = label_encoder[0].inverse_transform(df1['Position'].astype(int))
+        p = sns.countplot(x='Position', data = df1, hue='socmedialevel', palette='bright')
+        _ = plt.setp(p.get_xticklabels(), rotation=90)
+        st.pyplot(fig)
+        
+        st.write("Levels of DPA Awareness Across Age Groups")
+        fig=plt.figure(figsize=(6,3))        
+        p = sns.countplot(x='AgeRange', data = df1, hue='DPAawarenesslevel', palette='bright')
+        _ = plt.setp(p.get_xticklabels(), rotation=90) 
+        st.pyplot(fig)
+ 
+        st.write("Levels of DPA Awareness Across Position")
+        fig=plt.figure(figsize=(6,3))    
+        p = sns.countplot(x='Position', data = df1, hue='DPAawarenesslevel', palette='bright')
+        _ = plt.setp(p.get_xticklabels(), rotation=90)
+        st.pyplot(fig)
+        
+        st.write("Compute Chi-Square for Age Groups and Social Media Use")
+        # Generate a contingency table
+        st.write("Contigency Table")
+        cont_table = pd.crosstab(df1['AgeRange'], df1['socmedialevel'])
+        st.write(cont_table)
+    
+        # perform a chi-square test of independence
+        chi2_stat, p_value, dof, expected = chi2_contingency(cont_table)
+
+        # print the results
+        st.write("Chi-square statistic: " + chi2_stat)
+        st.write("p-value: " + p_value)
+        st.write("Degrees of freedom: " + dof)
+        st.write("Expected frequencies: \n" + expected)
+
 # Run the app
 if __name__ == "__main__":
     app()
