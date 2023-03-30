@@ -16,6 +16,14 @@ def encode_label(input_label, test_label):
   label_encoder[-1].fit(input_label)
   return label_encoder[-1].transform(test_label)
 
+def GetSocmediaLevel(socmedia):   
+    if ( socmedia > 2.50 ):
+        return 'high'
+    if ( socmedia > 1.50):
+        return 'moderate'
+    else: 
+        return 'low'
+
 # Define the Streamlit app
 def app():
     st.header("Welcome to Data Privacy Awareness Study")
@@ -86,6 +94,18 @@ def app():
         p = sns.countplot(x="socmedia", data = df1, palette="muted")
         _ = plt.setp(p.get_xticklabels(), rotation=90)
         st.pyplot(fig)
+        fig=plt.figure(figsize=(6,3))
+        st.write("DPA Awareness mean rating (raw)")        
+        p = sns.countplot(x="dpa_awareness", data = df1, palette="muted")
+        _ = plt.setp(p.get_xticklabels(), rotation=90) 
+        st.pyplot(fig)
+        
+        df1['socmedialevel'] = df1.apply(lambda x : GetSocmediaLevel(x['socmedia']), axis=1)
+        st.write(df1.socmedialevel.value_counts())
+        fig=plt.figure(figsize=(6,3))        
+        sns.countplot(x="socmedialevel", data = df1, order=['high','moderate','low'],  palette="muted")
+        plt.title('Social Media Levels')
+        st.pyplot(fig)  
         
 # Run the app
 if __name__ == "__main__":
